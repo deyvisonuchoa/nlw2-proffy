@@ -9,6 +9,7 @@ import logoImg from '../../assets/images/logo.svg';
 
 interface PageHeaderProps {
     title: string;
+    description?: string;
 }
 
 export const PageHeader: React.FC<PageHeaderProps> = (props) => {
@@ -22,6 +23,7 @@ export const PageHeader: React.FC<PageHeaderProps> = (props) => {
                 </div>
                 <div className="header-content">
                     <strong>{props.title}</strong>
+                    { props.description && <p>{props.description}</p>}
 
                 {props.children}
                 </div>

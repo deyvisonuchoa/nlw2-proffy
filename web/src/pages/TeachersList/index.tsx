@@ -6,6 +6,7 @@ import './styles.css';
 
 import whatsAppIcon from '../../assets/images/icons/whatsapp.svg';
 import TeachersItem from '../../components/TeacherItem/intex';
+import Input from '../../components/input';
 
 export default function TeachersList() {
 
@@ -16,27 +17,15 @@ export default function TeachersList() {
             <div id="page-teacher-list" className="container">
                 <PageHeader title={tituloHeader} >
                     <form id="search-teachers">
-                        <div className="input-block">
-                            <label htmlFor="subject">Matéria</label>
-                            <input type="text" id="subject"/>
-                        </div>
-                        
-                        <div className="input-block">
-                            <label htmlFor="week_day">Dia da semana</label>
-                            <input type="text" id="week_day"/>
-                        </div>
+                        <Input name="subject" label="Matéria"/>
 
-                        <div className="input-block">
-                            <label htmlFor="time">Hora</label>
-                            <input type="text" id="time"/>
-                        </div>
+                        <Input name="week_day" label="Dia da semana"/>
+
+                        <Input type="time" name="time" label="Hora"/>
                     </form>
                 </PageHeader>   
 
                 <main>
-                    <TeachersItem />
-                    <TeachersItem />
-                    <TeachersItem />
                     <TeachersItem />
                 </main>             
             </div>
