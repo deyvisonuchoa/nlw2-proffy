@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import '../../assets/styles/global.css';
 import Input from '../../components/input';
@@ -10,7 +10,17 @@ import './styles.css';
 import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
 
-export default function TeachersForm() {
+export default function TeachersForm() {    
+    const [scheduleItems, setScheduleItems] = useState([
+        { week_day: 2, from: '', to: '' }
+    ]);
+
+    function addNewScheduleItem(){
+        setScheduleItems([
+            ...scheduleItems,
+            { week_day: 2, from: '', to: '' }
+        ]);
+    }
 
     const tituloHeader:string = "Que incrivel que voce queira dar aulas";
     const description: string = "O primeiro passo é preencher esse formulário de inscrição";
@@ -52,6 +62,33 @@ export default function TeachersForm() {
                         ]}
                     />
                     <Input name="cost" label="Custo da sua hora por aula"/>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Horários disponíveis <button type="button" onClick={addNewScheduleItem}>+ Novo horário</button></legend>                    
+                  
+                    {scheduleItems.map( schedule => {
+                        return (
+                            <div key={schedule.week_day} className="schedule-item">
+                                <Select 
+                                    name="week_day" 
+                                    label="Dia da semana"
+                                    options={[
+                                        { value: '2', label: 'Segunda-feira' },
+                                        { value: '3', label: 'Terça-feira' },
+                                        { value: '4', label: 'Quarta-feira' },
+                                        { value: '5', label: 'Quinta-feira' },
+                                        { value: '6', label: 'Sextou' },
+                                        { value: '7', label: 'Sábado' },
+                                        { value: '1', label: 'Domingo' },
+                                    ]}
+                                />
+
+                                <Input type="time" name="from" label="Das"/>
+                                <Input type="time" name="to" label="Até"/>
+                            </div>
+                        );
+                    })}
                 </fieldset>
 
                 <footer>
