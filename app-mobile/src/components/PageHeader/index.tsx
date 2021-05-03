@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Text, View, Image } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { styles } from './styles';
@@ -8,10 +8,15 @@ import logoImage from '../../assets/images/logo.png';
 import { useNavigation, useNavigationState } from '@react-navigation/core';
 
 interface PageHeaderProps{
-    title: string
+    title: string;
+    headerRight?: ReactNode;
 }
 
-export default function PageHeader( {title}: PageHeaderProps ){
+export const PageHeader: React.FC<PageHeaderProps> = ({
+    title,
+    headerRight,
+    children,
+  }) => {
     const navigation = useNavigation();
 
     function handleGoBack(){
@@ -27,10 +32,16 @@ export default function PageHeader( {title}: PageHeaderProps ){
 
                 <Image source={logoImage} resizeMode="contain"/>
             </View>
+            
+            <View style={styles.header}>
+                <Text style={styles.title}>
+                    {title}
+                </Text>
 
-            <Text style={styles.title}>
-                {title}
-            </Text>
+                {headerRight}
+            </View>
+
+            {children}
         </View>
     );
 }
